@@ -1,4 +1,3 @@
-import KeyboardShortcuts from "discourse/lib/keyboard-shortcuts";
 import { isEnabled, isEnhanced, setEnabled } from "../localstorage-config";
 import { printHint1, printHint2 } from "./console";
 import Icons from "./icons";
@@ -28,10 +27,9 @@ export default function initializer(api) {
     // not in group, but it's April Fools' Day or forced
     // enable global easter egg
     document.body.classList.add("shuiyuan-april-fools-2024-global");
-    KeyboardShortcuts.unbind({
-      "ctrl+shift+i": null,
-      F12: null,
-    });
+    api.container
+      .lookup("service:keyboard-shortcuts")
+      .unbind({ ["ctrl+shift+i"]: null, ["f12"]: null });
     if (!isMobleDevice) {
       discourseLater(printHint1, 5000);
     }
@@ -41,17 +39,19 @@ export default function initializer(api) {
 
   document.body.classList.add("shuiyuan-april-fools-2024");
 
-  api.reopenWidget("post-avatar", {
-    html(attrs) {
+  api.registerValueTransformer(
+    "post-avatar-template",
+    ({ value: avatarUrl, context }) => {
       if (
-        (((attrs.id + currentUser.id) * 7) % 100) / 100 <
+        // eslint-disable-next-line no-bitwise
+        (((context.post.id ^ currentUser.id) * 7) % 100) / 100 <
         settings.avatar_replace_probability_2024
       ) {
-        attrs.avatar_template = currentUser.avatar_template;
+        return currentUser.avatar_template;
       }
-      return this._super(attrs);
-    },
-  });
+      return avatarUrl;
+    }
+  );
 
   api.decorateCookedElement(
     (elem) => {

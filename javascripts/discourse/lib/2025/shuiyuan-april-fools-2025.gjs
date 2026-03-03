@@ -1,4 +1,3 @@
-import { h } from "virtual-dom";
 import { isEnabled, isEnhanced } from "../localstorage-config";
 import { convert, convertTextInNode } from "./chinese-convert";
 
@@ -9,36 +8,34 @@ export default function initializer(api) {
 
   document.body.classList.add("shuiyuan-april-fools-2025-global");
 
-  api.decorateWidget("post-avatar:after", () => {
-    return [h("div.avatar-holo"), h("div.avatar-glow")];
+  api.renderAfterWrapperOutlet(
+    "post-avatar",
+    <template>
+      <div class="avatar-holo" />
+      <div class="avatar-glow" />
+    </template>
+  );
+
+  api.registerValueTransformer("post-avatar-class", ({ value, context }) => {
+    const { post } = context;
+    return [...(value || []), `trust-level-${post.trust_level}`];
   });
 
-  api.reopenWidget("post-avatar", {
-    buildClasses(attrs) {
-      const classes = (this._super && this._super(attrs)) || [];
-      classes.push(`trust-level-${attrs.trustLevel}`);
-      return classes;
-    },
-  });
-
-  api.reopenWidget("post-meta-data", {
-    buildClasses(attrs) {
-      const classes = (this._super && this._super(attrs)) || [];
-      classes.push(`trust-level-${attrs.trustLevel}`);
-      return classes;
-    },
+  api.registerValueTransformer("post-meta-data-class", ({ value, context }) => {
+    const { post } = context;
+    return [...(value || []), `trust-level-${post.trust_level}`];
   });
 
   if (isEnhanced(2025)) {
-    api.reopenWidget("poster-name", {
-      html(attrs) {
-        const originalName = attrs.name;
-        attrs.name = convert(originalName || attrs.username);
-        const html = this._super(attrs);
-        attrs.name = originalName;
-        return html;
-      },
-    });
+    api.modifyClass(
+      "component:post/meta-data/poster-name",
+      (Superclass) =>
+        class extends Superclass {
+          get name() {
+            return convert(super.name);
+          }
+        }
+    );
 
     if (window.localStorage.getItem("shuiyuan-april-fools-2025-mars-all")) {
       api.decorateCookedElement((node) => convertTextInNode(node));
