@@ -1,16 +1,14 @@
 .april-fools-time-machine-modal {
-  .btn-text{
+  .btn-text {
     margin-top: 10px;
   }
 
-  #april-fools-time-machine-modal-banana{
+  #april-fools-time-machine-modal-banana {
     width: 100%;
     max-width: 400px;
     margin-top: 10px;
   }
 }
-
-
 
 body.shuiyuan-april-fools-2025-global {
   .topic-avatar:hover {
@@ -19,7 +17,7 @@ body.shuiyuan-april-fools-2025-global {
 
   .post-avatar img.avatar {
     border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px rgb(0, 0, 0, 0.1);
     background-color: var(--header_background);
   }
 
@@ -34,7 +32,7 @@ body.shuiyuan-april-fools-2025-global {
     filter: blur(20px);
     background-size: 200% 200%;
     opacity: 0.2;
-    transition: all 1.0s ease;
+    transition: all 1s ease;
     z-index: -1;
   }
 
@@ -44,27 +42,31 @@ body.shuiyuan-april-fools-2025-global {
     transition: transform 0.3s ease;
 
     &.trust-level-2 .avatar-glow {
-      background-image: linear-gradient(to left,
-          #ff5770,
-          #e4428d,
-          #c42da8,
-          #9e16c3,
-          #6501de,
-          #9e16c3,
-          #c42da8,
-          #e4428d,
-          #ff5770);
+      background-image: linear-gradient(
+        to left,
+        #ff5770,
+        #e4428d,
+        #c42da8,
+        #9e16c3,
+        #6501de,
+        #9e16c3,
+        #c42da8,
+        #e4428d,
+        #ff5770
+      );
     }
 
     &.trust-level-3 .avatar-glow {
-      background-image: linear-gradient(to left,
-          #f00,
-          #ff4500,
-          #ff8c00,
-          #ffd700,
-          #ff8c00,
-          #ff4500,
-          #f00);
+      background-image: linear-gradient(
+        to left,
+        #f00,
+        #ff4500,
+        #ff8c00,
+        #ffd700,
+        #ff8c00,
+        #ff4500,
+        #f00
+      );
     }
   }
 
@@ -79,7 +81,6 @@ body.shuiyuan-april-fools-2025-global {
     transform: scale(1.2);
   }
 
-
   .avatar-holo {
     position: absolute;
     height: calc(100% - var(--post-avatar-padding-top));
@@ -91,21 +92,17 @@ body.shuiyuan-april-fools-2025-global {
   }
 
   .avatar-holo::before {
-    content: '';
+    content: "";
     position: absolute;
     top: -50%;
     left: -50%;
     width: 200%;
     height: 200%;
-    background: linear-gradient(0deg,
-        transparent,
-        transparent 30%,
-        white);
+    background: linear-gradient(0deg, transparent, transparent 30%, white);
     transform: rotate(-45deg);
     transition: all 1s ease;
     opacity: 0;
     z-index: 2;
-
   }
 
   .topic-avatar:hover .avatar-holo::before {

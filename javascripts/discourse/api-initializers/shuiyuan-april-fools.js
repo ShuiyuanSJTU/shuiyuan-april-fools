@@ -5,11 +5,13 @@ import apiInitializer2024 from "../lib/2024/shuiyuan-april-fools-2024";
 import apiInitializer2025 from "../lib/2025/shuiyuan-april-fools-2025";
 import { shouldEnableComponent } from "../lib/utils";
 
-export default apiInitializer("0.11.1", (api) => {
+export default apiInitializer((api) => {
   window.showAprilFoolsModal = () => {
     if (!shouldEnableComponent()) {
       // eslint-disable-next-line no-console
-      console.warn("Component is not enabled, your may need to enable it with `forceEnableAprilFools()` first.");
+      console.warn(
+        "Component is not enabled, your may need to enable it with `forceEnableAprilFools()` first."
+      );
       window.forceEnableAprilFools = () => {
         window.localStorage.setItem("shuiyuan-april-fools-force", "true");
         // eslint-disable-next-line no-console
@@ -19,10 +21,11 @@ export default apiInitializer("0.11.1", (api) => {
     api._lookupContainer("service:modal").show(AprilFoolsTimeMachineModal);
   };
 
-  if (!shouldEnableComponent()){ return; }
+  if (!shouldEnableComponent()) {
+    return;
+  }
 
   apiInitializer2025(api);
   apiInitializer2024(api);
   apiInitializer2022(api);
-
 });

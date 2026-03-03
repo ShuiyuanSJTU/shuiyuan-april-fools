@@ -3,7 +3,9 @@ import { isEnabled, isEnhanced } from "../localstorage-config";
 import { convert, convertTextInNode } from "./chinese-convert";
 
 export default function initializer(api) {
-  if (!isEnabled(2025)) { return; }
+  if (!isEnabled(2025)) {
+    return;
+  }
 
   document.body.classList.add("shuiyuan-april-fools-2025-global");
 
@@ -16,7 +18,7 @@ export default function initializer(api) {
       const classes = (this._super && this._super(attrs)) || [];
       classes.push(`trust-level-${attrs.trustLevel}`);
       return classes;
-    }
+    },
   });
 
   api.reopenWidget("post-meta-data", {
@@ -24,7 +26,7 @@ export default function initializer(api) {
       const classes = (this._super && this._super(attrs)) || [];
       classes.push(`trust-level-${attrs.trustLevel}`);
       return classes;
-    }
+    },
   });
 
   if (isEnhanced(2025)) {
@@ -35,11 +37,11 @@ export default function initializer(api) {
         const html = this._super(attrs);
         attrs.name = originalName;
         return html;
-      }
+      },
     });
 
     if (window.localStorage.getItem("shuiyuan-april-fools-2025-mars-all")) {
-      api.decorateCookedElement(node => convertTextInNode(node));
+      api.decorateCookedElement((node) => convertTextInNode(node));
       window.leaveMars = () => {
         window.localStorage.removeItem("shuiyuan-april-fools-2025-mars-all");
         window.location.reload();
@@ -52,7 +54,10 @@ export default function initializer(api) {
       }, 3000);
     } else {
       window.enterMars = () => {
-        window.localStorage.setItem("shuiyuan-april-fools-2025-mars-all", "true");
+        window.localStorage.setItem(
+          "shuiyuan-april-fools-2025-mars-all",
+          "true"
+        );
         window.location.reload();
       };
       setTimeout(() => {

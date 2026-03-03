@@ -1,45 +1,53 @@
-body.shuiyuan-april-fools-2024{
-    span.user-title{
-        display: none;
-    }
+body.shuiyuan-april-fools-2024 {
+  span.user-title {
+    display: none;
+  }
 
-    div:has(> span.user-title) > :nth-last-child(2){
-        display: block;
+  div:has(> span.user-title)> :nth-last-child(2) {
+    display: block;
 
-        &::after{
-            @keyframes colorChange {
-                0% { color: red; }
-
-                50% { color: gold; }
-
-                100% { color: red; }
-            }
-            content: "#{$new_user_title_2024}";
-            display: block;
-            animation: colorChange 5s infinite;
-            font-weight: bold;
-            font-size: var(--font-0);
+    &::after {
+      @keyframes colorChange {
+        0% {
+          color: red;
         }
+
+        50% {
+          color: gold;
+        }
+
+        100% {
+          color: red;
+        }
+      }
+
+      content: "#{$new_user_title_2024}";
+      display: block;
+      animation: colorChange 5s infinite;
+      font-weight: bold;
+      font-size: var(--font-0);
     }
+  }
 }
 
 $user-titles: 活跃用户, 精品作者, 博物学者, 谈笑风生, 水源团队;
 $user-title-replace: 不活跃用户, 精品读者, 博物学生, 笑谈生风, 水源用户;
 
-body.shuiyuan-april-fools-2024-global:not(.shuiyuan-april-fools-2024){
-    @each $original, $replace in zip($user-titles, $user-title-replace){
-        div:has(> span.user-title.user-title--#{$original}) > :nth-last-child(2){
-            display: block;
-            color: rgb(31, 80, 165);
+body.shuiyuan-april-fools-2024-global:not(.shuiyuan-april-fools-2024) {
+  @each $original, $replace in zip($user-titles, $user-title-replace) {
+    div:has(> span.user-title.user-title--#{$original})> :nth-last-child(2) {
+      display: block;
+      color: rgb(31, 80, 165);
 
-            &::after{
-                content: '#{$replace}';
-                display: block;
-                font-size: var(--font-0);
-            }
-        }
-        span.user-title.user-title--#{$original}{
-            display: none;
-        }
+      &::after {
+        content: "#{$replace}";
+        display: block;
+        font-size: var(--font-0);
+      }
     }
+
+    span.user-title.user-title--#{$original} {
+      display: none;
+    }
+  }
 }

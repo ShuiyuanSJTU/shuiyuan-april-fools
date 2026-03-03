@@ -19,7 +19,12 @@ export default class AprilFoolsControlBtn extends Component {
 
   <template>
     <li class="user-profile-controls-outlet">
-    <DButton class="btn-default" @action={{ this.openModal }} @translatedLabel="???" @icon="far-clock" />
+      <DButton
+        class="btn-default"
+        @action={{this.openModal}}
+        @translatedLabel="???"
+        @icon="far-clock"
+      />
     </li>
   </template>
 }

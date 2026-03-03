@@ -4,10 +4,11 @@ function isAprilFools() {
 }
 
 function shouldEnableComponent() {
-  return isAprilFools() || settings.force_global_easter_egg || window.localStorage.getItem("shuiyuan-april-fools-force");
+  return (
+    isAprilFools() ||
+    settings.force_global_easter_egg ||
+    window.localStorage.getItem("shuiyuan-april-fools-force")
+  );
 }
 
-export {
-  isAprilFools,
-  shouldEnableComponent
-};
+export { isAprilFools, shouldEnableComponent };

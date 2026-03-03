@@ -1,7 +1,9 @@
 // const configRaw = window.localStorage.getItem("shuiyuan-april-fools-rewind").split("|");
 
 function getConfig() {
-  return window.localStorage.getItem("shuiyuan-april-fools-rewind")?.split("|") || [];
+  return (
+    window.localStorage.getItem("shuiyuan-april-fools-rewind")?.split("|") || []
+  );
 }
 
 function addConfigItem(key) {
@@ -11,7 +13,6 @@ function addConfigItem(key) {
   }
   window.localStorage.setItem("shuiyuan-april-fools-rewind", config.join("|"));
 }
-
 
 function removeConfigItem(key) {
   let config = getConfig();
@@ -60,7 +61,11 @@ function isEnhanced(year) {
 }
 
 function isDefault() {
-  return getConfig().length === 0 || window.localStorage.getItem("shuiyuan-april-fools-rewind") === new Date().getFullYear().toString();
+  return (
+    getConfig().length === 0 ||
+    window.localStorage.getItem("shuiyuan-april-fools-rewind") ===
+      new Date().getFullYear().toString()
+  );
 }
 
 export {
@@ -69,5 +74,5 @@ export {
   disableAll,
   isEnabled,
   isEnhanced,
-  isDefault
+  isDefault,
 };
