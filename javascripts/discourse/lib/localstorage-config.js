@@ -41,6 +41,38 @@ function setOnlyEnabled(year, enhanced = false) {
   setEnabled(year, enhanced);
 }
 
+function supportsEnhanced(year) {
+  return [2024, 2025, 2026].indexOf(Number(year)) !== -1;
+}
+
+function setMultiEnabled(configs = []) {
+  clearConfig();
+  const selectedConfig = [];
+
+  configs.forEach(({ year, enabled, enhanced }) => {
+    if (!enabled) {
+      return;
+    }
+
+    const normalizedYear = Number(year);
+    selectedConfig.push(`${normalizedYear}`);
+
+    if (enhanced && supportsEnhanced(normalizedYear)) {
+      selectedConfig.push(`${normalizedYear}-enhanced`);
+    }
+  });
+
+  if (selectedConfig.length === 0) {
+    disableAll();
+    return;
+  }
+
+  window.localStorage.setItem(
+    "shuiyuan-april-fools-rewind",
+    selectedConfig.join("|")
+  );
+}
+
 function disableAll() {
   window.localStorage.setItem("shuiyuan-april-fools-rewind", "disabled");
 }
@@ -71,6 +103,8 @@ function isDefault() {
 export {
   setEnabled,
   setOnlyEnabled,
+  setMultiEnabled,
+  supportsEnhanced,
   disableAll,
   isEnabled,
   isEnhanced,
