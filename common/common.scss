@@ -1,2 +1,8 @@
 @import "2024/common";
 @import "2025/common";
+@import "2026/common";
+
+.user-main .about .controls .april-fools-control-btn .april-fools-profile-btn {
+  line-height: var(--line-height-large);
+  min-height: 2.35em;
+}

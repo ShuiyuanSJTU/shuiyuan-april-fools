@@ -34,6 +34,12 @@ export default class AprilFoolsTimeMachineModal extends Component {
   }
 
   @action
+  travelTo2026() {
+    setOnlyEnabled(2026, this.isEnhanced);
+    this.delayedReload();
+  }
+
+  @action
   travelTo2025() {
     setOnlyEnabled(2025, this.isEnhanced);
     this.delayedReload();
@@ -67,6 +73,10 @@ export default class AprilFoolsTimeMachineModal extends Component {
         <DButton
           @action={{this.disable}}
           @translatedLabel="我是来结束这一切的"
+        />
+        <DButton
+          @action={{this.travelTo2026}}
+          @translatedLabel="前往 2026 年"
         />
         <DButton
           @action={{this.travelTo2025}}

@@ -2,7 +2,7 @@ import { isEnabled, isEnhanced } from "../localstorage-config";
 import { convert, convertTextInNode } from "./chinese-convert";
 
 export default function initializer(api) {
-  if (!isEnabled(2025)) {
+  if (!settings.enable_easter_egg_2025 || !isEnabled(2025)) {
     return;
   }
 

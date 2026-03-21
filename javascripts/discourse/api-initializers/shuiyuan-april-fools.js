@@ -3,6 +3,7 @@ import AprilFoolsTimeMachineModal from "../components/modal/april-fools-time-mac
 import apiInitializer2022 from "../lib/2022/shuiyuan-april-fools-2022";
 import apiInitializer2024 from "../lib/2024/shuiyuan-april-fools-2024";
 import apiInitializer2025 from "../lib/2025/shuiyuan-april-fools-2025";
+import apiInitializer2026 from "../lib/2026/shuiyuan-april-fools-2026";
 import { shouldEnableComponent } from "../lib/utils";
 
 export default apiInitializer((api) => {
@@ -25,6 +26,7 @@ export default apiInitializer((api) => {
     return;
   }
 
+  apiInitializer2026(api);
   apiInitializer2025(api);
   apiInitializer2024(api);
   apiInitializer2022(api);
