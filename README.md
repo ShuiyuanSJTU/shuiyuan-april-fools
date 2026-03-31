@@ -1,4 +1,4 @@
-# shuiyuan-april-fools-2025
+# shuiyuan-april-fools
 
 **Theme Summary**
 

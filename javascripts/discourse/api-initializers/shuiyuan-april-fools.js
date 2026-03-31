@@ -7,13 +7,24 @@ import apiInitializer2026 from "../lib/2026/shuiyuan-april-fools-2026";
 import { shouldEnableComponent } from "../lib/utils";
 
 export default apiInitializer((api) => {
+  if (!api.getCurrentUser()) {
+    return;
+  }
+
   window.showAprilFoolsModal = () => {
     if (!shouldEnableComponent()) {
       // eslint-disable-next-line no-console
       console.warn(
         "Component is not enabled, your may need to enable it with `forceEnableAprilFools()` first."
       );
-      window.forceEnableAprilFools = () => {
+      window.forceEnableAprilFools = (enabled = true) => {
+        if (enabled === false) {
+          window.localStorage.removeItem("shuiyuan-april-fools-force");
+          // eslint-disable-next-line no-console
+          console.log("Forced component enable is cleared now.");
+          return;
+        }
+
         window.localStorage.setItem("shuiyuan-april-fools-force", "true");
         // eslint-disable-next-line no-console
         console.log("Component is enabled now.");
